@@ -16,6 +16,7 @@ function getComputerChoice(){
 //getComputerChoice();
 
 //create a function that returns the valid human choice
+/*
 function getHumanChoice(){
   let humanChoice = prompt("what is your choice?");
   if(humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors'){
@@ -24,7 +25,40 @@ function getHumanChoice(){
     alert('please pick a valid choice!');
   }
 };
-//getHumanChoice();
+*/
+
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+const Div1 = document.getElementById("results-div");
+const Div2 = document.getElementById("score-div");
+const resetButton = document.getElementById("reset");
+const Div3 = document.getElementById("container");
+const buttons = document.querySelector(".button");
+let humanMove = "";
+rockButton.addEventListener("click", ()=>{
+  humanMove = "rock";
+  playRound(getComputerChoice());
+});
+
+paperButton.addEventListener("click", ()=>{
+  humanMove = "paper";
+  playRound(getComputerChoice());
+});
+
+scissorsButton.addEventListener("click", ()=>{
+  humanMove = "scissors";
+  playRound(getComputerChoice());
+});
+
+resetButton.addEventListener("click", ()=>{
+  score.humanScore = 0;
+  score.computerScore = 0;
+  score.ties = 0;
+  updateScores();
+  Div1.innerHTML = "";
+});
+
 
 // create 2 variables, humanScore and computerScore to keep track of the scores
 let score = {
@@ -37,7 +71,7 @@ let score = {
 // arguments, plays a single round, increments the winner's score
 //and announces a winner
 
-function playRound(humanMove,computerMove){
+function playRound(computerMove){
  let result = '';
 
  if(computerMove === humanMove ){
@@ -48,7 +82,7 @@ function playRound(humanMove,computerMove){
     result = "you lose! paper beats rock!";
     score.computerScore += 1;
    } else if(computerMove === "scissors"){
-    result = "you win!rock beats scissors!";
+    result = "you win! rock beats scissors!";
     score.humanScore += 1;
    }
  } else if(humanMove === "paper"){
@@ -70,14 +104,15 @@ function playRound(humanMove,computerMove){
  }
   
   localStorage.setItem('scores' , JSON.stringify(score));
-  console.log(` you picked ${humanMove},\n the computer picked ${computerMove},\n ${result}.`);
+  Div1.innerHTML = ` you picked ${humanMove},\n the computer picked ${computerMove},\n ${result}.`;
   updateScores();
 };
+
 
 //playRound(getHumanChoice(), getComputerChoice());
 //create a function that automatially updates the scores
 function updateScores(){
- console.log(` your score:${score.humanScore},\n computer score:${score.computerScore},\n ties:${score.ties}`);
+ Div2.innerHTML = ` your score:${score.humanScore},\n computer score:${score.computerScore},\n ties:${score.ties}`;
 };
 
 //create a function named playgame() that calls playround()to play 5 
@@ -90,7 +125,6 @@ function playGame(){
   let result2 = declareWinner();
   return console.log(result2);
 };
-playGame();
 
 //create a funtion to compate the scores at the end of a round
 //and delare a winner
@@ -106,3 +140,33 @@ function declareWinner(){
   }
   return winner;
 };
+
+//add styles
+Div1.setAttribute(
+  "style", 
+  "color:white;font-family:arial;font-size:20px;margin:20px;"
+);
+Div2.setAttribute(
+  "style", 
+  "color:white;font-family:arial;font-size:20px;margin:20px;"
+);
+Div3.setAttribute(
+  "style",
+  "width:80%; height:300px;display:flex;justify-content:space-between; padding:10px;"
+);
+rockButton.setAttribute(
+  "style",
+  "width:200px; border:none; cursor:pointer; height:200px; border-radius:100px;background:yellow; color:black; font-size:40px;"
+);
+paperButton.setAttribute(
+  "style",
+  "width:200px; border:none; cursor:pointer; height:200px; border-radius:100px;background:yellow; color:black; font-size:40px;"
+);
+scissorsButton.setAttribute(
+  "style",
+  "width:200px; border:none; cursor:pointer; height:200px; border-radius:100px;background:yellow; color:black; font-size:40px;"
+);
+resetButton.setAttribute(
+  "style",
+  "width:200px; border:none; cursor:pointer; height:200px; border-radius:100px;background:yellow; color:black; font-size:40px;"
+);

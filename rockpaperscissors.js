@@ -104,6 +104,5 @@ function compareScores(humanScore,computerScore){
     alert('you win the game');
   } else if(humanScore < computerScore){
     alert('you lost the game');
-  } 
-  
-}
+  }  
+};
