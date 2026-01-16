@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="stylesheet" href="playerinfo.modal.styles.css">
     <title>02-rockpaperscissors</title>
   </head>
   <body style="background-color: black;">
@@ -21,6 +22,44 @@
       computer score:0,
       ties:0.
     </div>
-    <script type="text/javascript" src="02-rockpaperscissors.js"></script>
+
+    
+    <button class="add-info-button" id="add-info">add info</button>
+    
+
+    <div class="player-info"></div>
+
+    <dialog id="player-info-dialog">
+      <form method="dialog" class="player-info-form">
+
+        <label for="player-name">Enter your name:</label>
+        <input type="text" id="player-name" name="player-name" required>
+        <span id="name-error-message"></span>
+
+        <label for="email">Enter your email:</label>
+        <input type="text" id="email" name="email" required>
+        <span id="email-error-message"></span>
+
+        <label for="country">Enter your country:</label>
+        <input type="text" id="country" name="country" required>
+        <span id="country-error-message"></span>
+
+        <label for="postal-code">Enter your postal code:</label>
+        <input type="text" id="postal-code" name="postal-code" required>
+        <span id="postal-code-error-message"></span>
+
+        <label for="password">Enter your password:</label>
+        <input type="text" id="password" name="password" required>
+        <span id="password-error-message"></span>
+
+        <menu>
+          <button id="cancel" value="cancel">Cancel</button>
+          <button id="confirm" value="confirm" type="submit">OK</button>
+        </menu>
+
+      </form>
+    </dialog>
+    <script type="module" src="02-rockpaperscissors.js"></script>
+    <script type="module" src="playerinfo.modal.js"></script>
   </body>
 </html>
